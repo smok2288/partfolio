@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="forms_block" style="display: flex; justify-content: space-between">
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="name">
+    <button>Отправить</button>
+</form>
+
+<form action="{% url 'main:forms1' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="name">
+    <button>Отправить</button>
+</form>
+</div>
+</body>
+</html>

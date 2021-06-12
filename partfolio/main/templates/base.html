@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Базовый {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css'%}">
+</head>
+<body>
+<header>
+    <div class="block_logo">
+        <div class="logo">
+            <a href=""><img src="{% static 'img/stormnet.png' %}" alt="logo" class="logo_img"></a>
+        </div>
+        <div class="logo_icon">
+            <a href="" class="logo_icon_a"><img class="icon_img" src="{% static 'img/vk.png' %}" alt="VK"></a>
+            <a href="" class="logo_icon_a"><img class="icon_img" src="{% static 'img/telegram.png' %}" alt="Telegram"></a>
+            <a href="" class="logo_icon_a"><img class="icon_img" src="{% static 'img/instagram.png' %}" alt="Instagram"></a>
+        </div>
+        <div class="block_contact">
+            <p>+372-25-736-93-70</p>
+            <p>+372-29-888-66-66</p>
+            <p>+372-29-888-66-66</p>
+        </div>
+        <div class="cart">
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            Корзина
+            <a href="{% url 'cart:cart'%}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+        {% else %}
+            Your cart is empty.
+        {% endif %}
+    {% endwith %}
+</div>
+    </div>
+</header>
+
+<div class="block_menu">
+    <nav class="block_nav">
+        <a href="">О нас</a>
+        <a href="">Блог</a>
+        <a href="{% url 'market:product_list'%}">Магазин</a>
+        <a href="">отзывы</a>
+    </nav>
+        <div class="authorisation">
+            {% if user.is_authenticated %}
+        <a href="{% url 'main:logout' %}">Выход</a>
+            {% else %}
+            <a href="{% url 'main:login' %}">Авторизация или вход</a>
+            {% endif %}
+        <a href="{% url 'main:register' %}">Регистрация</a>
+        </div>
+</div>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+</div>
+
+</body>
+</html>

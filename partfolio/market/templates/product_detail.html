@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+<head>
+    <title>Подробно о продукте</title>
+</head>
+<body>
+Название: {{product.name}}
+<br>
+<img src="{{product.image.url}}">
+Количество: {{product.stock}} штук
+<br>
+Описание: {{product.description}}
+<br>
+    <strong>Стоимость: {{product.price}} $</strong>
+<form action="{% url 'cart:add_cart' product.id %}" method="post">
+    {{cart_product_form}}
+    {% csrf_token %}
+    <input type="submit" value="Добавить в корзину">
+</form>
+<br>
+
+
+</body>
+{% endblock %}
