@@ -14,13 +14,8 @@ def add_cart(request, product_id):
     if form.is_valid():
         cd = form.cleaned_data
         cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
-    return redirect('cart:cart_detail')
+    return redirect('cart:cart')
 
-# Это представление для добавления продуктов в корзину или обновления количества для существующих продуктов.
-# Мы используем декоратор require_POST, чтобы разрешить только POST запросы, поскольку это представление изменит данные.
-# Представление получает ID продукта в качестве параметра. Мы извлекаем экземпляр продукта с заданным ID и
-# проверяем CartForm. Если форма валидна, мы либо добавляем, либо обновляем продукт в корзине.
-# Представление перенаправляет по URL-адресу cart_detail, который будет отображать содержимое корзины
 
 def cart_detail(request):
     cart = Cart(request)
@@ -34,4 +29,4 @@ def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
-    return redirect('cart:cart_detail')
+    return redirect('cart:cart')

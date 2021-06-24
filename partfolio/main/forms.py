@@ -2,12 +2,13 @@ from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 from django import forms
 from .apps import user_registered
-from blog.admin import PostAdmin
+# from blog.admin import PostAdmin
+# from blog.admin import PostAdmin
 
 
-class RegisterUserForm(forms.ModelForm):
+class RegisterUserForm(forms.Form):
     email = forms.EmailField(required=True, label='Адрес электронной почты')
-    password1 = forms.CharField(label='пароль', widget=forms.PasswordInput, help_text=password_validation.password_validators_help_text_html())
+    password1 = forms.CharField(label='пароль', widget=forms.PasswordInput, help_text='Введите пароль')
     password2 = forms.CharField(label='Пароль повторно', widget=forms.PasswordInput, help_text='введите пароль повторно')
 
     def clean_password1(self):
@@ -37,7 +38,7 @@ class RegisterUserForm(forms.ModelForm):
         if commit:
             user.save()
 
-        user_registered.send(RegisterUserForm, instance= user)
+        user_registered.send(RegisterUserForm)
         return user
 
     # class Meta:

@@ -8,24 +8,28 @@ from .forms import RegisterUserForm
 from django.core.signing import BadSignature
 
 from .utilities import send_activation_notification, signer
-from blog.admin import PostAdmin
+# from blog.admin import PostAdmin
 
 
 def first(request):
-    request.session['first'] = 'Johan'# это сессия
-    # request.session={'name':'Johan'}
+    request.session['first'] = 'Johan'
     print(request.session.get('first'))
     return render(request, 'first_page.html')
 
 
 class User_Login_View(LoginView):
-    tamplate_name = 'auth/Login_form.html'
+    tamplate_name = 'auth/login_form.html'
 
 def profile(request):
     return render(request, 'auth/user_profile.html')
 
+
+class User:
+    pass
+
+
 class RegisterUserView(CreateView):
-    model = PostAdmin
+    model = User
     template_name ='auth/register.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('main:register_done')
@@ -38,7 +42,7 @@ def ser_activate(request, sign):
         username = signer.unsign(sign)
     except BadSignature:
         return render(request, 'Bad_signature.html')
-    user = get_object_or_404(PostAdmin, username=username)
+    user = get_object_or_404(User, username=username)
 
     if user.is_activated:
         template = 'maim/user_activated.html'
