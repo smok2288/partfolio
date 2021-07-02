@@ -31,7 +31,7 @@
                 ${{ cart.get_total_price }}
             </a>
         {% else %}
-            Your cart is empty.
+            Корзина
         {% endif %}
     {% endwith %}
 </div>
@@ -51,7 +51,7 @@
             {% else %}
             <a href="{% url 'main:login' %}">Авторизация или вход</a>
             {% endif %}
-        <a href="{% url 'main:register' %}">Регистрация</a>
+        <a> | </a> <a href="{% url 'main:register' %}">Регистрация</a>
         </div>
 </div>
 

@@ -49,13 +49,15 @@ body{
 .categories_a{
     text-decoration: none;
     margin-left: 20px;
-    color: #0033666;
+    color: #003366;
 }
 .card{
     width: 200px;
-    height: 300px:
-    border: 1px solid #ba2121
-    border-radius: 10px
+    height: 300px;
+    border: 1px solid #ba2121;
+    border-radius: 10px;
+    text-align: right;
+
 }
 .main_card{
     margin-top: 30px;
@@ -75,11 +77,12 @@ body{
     text-decoration: none;
     color: red;
     font-weight: bold;
+    text-align: right;
 }
 
 .user_menu{
     display: flex;
-    height;: 30px;
+    height: 30px;
     justify-content: center;
     align-items: center;
     background: darkolivegreen;
@@ -87,7 +90,7 @@ body{
 
 .user_menu>a{
     text-decoration: none;
-    color;: yellow;
-    font-weight: boldr;
-    padding: center;
+    color: yellow;
+    font-weight: bolder;
+
 }

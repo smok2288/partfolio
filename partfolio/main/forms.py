@@ -7,6 +7,7 @@ from .apps import user_registered
 
 
 class RegisterUserForm(forms.Form):
+    username = forms.CharField(label='Логин', widget=forms.TextInput, help_text='Введите логин')
     email = forms.EmailField(required=True, label='Адрес электронной почты')
     password1 = forms.CharField(label='пароль', widget=forms.PasswordInput, help_text='Введите пароль')
     password2 = forms.CharField(label='Пароль повторно', widget=forms.PasswordInput, help_text='введите пароль повторно')
@@ -17,7 +18,7 @@ class RegisterUserForm(forms.Form):
             try:
                 password_validation.validate_password(password1)
             except ValidationError:
-                # self.add_error('password', ValidationError.message)
+                self.add_error('password', ValidationError.message)
                 raise ValidationError
         return password1
 
@@ -40,7 +41,3 @@ class RegisterUserForm(forms.Form):
 
         user_registered.send(RegisterUserForm)
         return user
-
-    # class Meta:
-    #     model = PostAdmin
-    #     fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'send_massages')

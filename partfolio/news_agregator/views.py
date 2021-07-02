@@ -6,11 +6,11 @@ from bs4 import BeautifulSoup
 
 tut = 'https://news.tut.by/?sort=time#sort'
 onliner = 'https://www.onliner.by'
-lh= 'https://lifehacker.ru/topics/news/'
+lh = 'https://lifehacker.ru/topics/news/'
 
 # tut_list = []
-onliner_list=[]
-lh_list=[]
+onliner_list = []
+lh_list = []
 
 
 # def get_tut():

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'projects',
     'blog',
     'news_agregator',
@@ -52,7 +53,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+
+
+
 
 SESSION_COOKIE_HTTPONLY = True
 ROOT_URLCONF = 'partfolio.urls'
@@ -116,6 +122,7 @@ USE_TZ = True
 
 
 
+
 STATIC_URL = '/static/'
 
 
@@ -125,3 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/admin/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

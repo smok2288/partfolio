@@ -1,13 +1,16 @@
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, FormView
 
 from .forms import RegisterUserForm
 
 from django.core.signing import BadSignature
 
 from .utilities import send_activation_notification, signer
+
+
 # from blog.admin import PostAdmin
 
 
@@ -20,22 +23,21 @@ def first(request):
 class User_Login_View(LoginView):
     tamplate_name = 'auth/login_form.html'
 
+
 def profile(request):
     return render(request, 'auth/user_profile.html')
 
 
-class User:
-    pass
-
-
-class RegisterUserView(CreateView):
+class RegisterUserView(FormView):
     model = User
-    template_name ='auth/register.html'
+    template_name = 'auth/register.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('main:register_done')
 
-class RegisterDontView (TemplateView):
+
+class RegisterDontView(TemplateView):
     template_name = 'auth/register_done.html'
+
 
 def ser_activate(request, sign):
     try:
@@ -54,13 +56,14 @@ def ser_activate(request, sign):
 
     return render(request, template)
 
+
 def forms1(request):
     if request.method == 'POST':
         print(request.POST)
     return render(request, 'forms2.html')
 
+
 def forms2(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         print(request.POST)
     return render(request, 'forms2.html')
-
