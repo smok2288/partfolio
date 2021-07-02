@@ -11,6 +11,7 @@ click-didyoumean==0.0.3
 click-plugins==1.1.1
 click-repl==0.2.0
 Django==3.2.3
+django-debug-toolbar==3.2.1
 flower==0.9.7
 humanize==3.7.1
 idna==2.10
